@@ -1,0 +1,5 @@
+echo 'docker,mesos' > /etc/mesos-slave/containerizers
+echo '5mins' > /etc/mesos-slave/executor_registration_timeout
+echo 'zk://172.28.128.5:2181/mesos'> /etc/mesos/zk
+sudo service mesos-master stop
+sudo service mesos-slave restart
