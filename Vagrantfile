@@ -12,18 +12,27 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "anak10thn/ignserver"
-  
+  config.vm.box = "centos7.box"
+  config.vm.provision :shell, :path => "bootstrap.sh"
   config.vm.define "s1" do |s1|
-    s1.vm.box = "anak10thn/ignserver"
+    s1.vm.box = "centos7.box"
+    s1.vm.network "private_network", ip: "10.2.2.10"
+    #s1.vm.provision :shell, :path => "bootstrap.sh"
   end
 
   config.vm.define "s2" do |s2|
-    s2.vm.box = "anak10thn/ignserver"
+    s2.vm.box = "centos7.box"
+    s2.vm.network "private_network", ip: "10.2.2.11"
+  end
+
+  config.vm.define "s3" do |s3|
+    s3.vm.box = "centos7.box"
+    s3.vm.network "private_network", ip: "10.2.2.12"
   end
 
   config.vm.define "m" do |m|
-    m.vm.box = "anak10thn/ignserver"
+    m.vm.box = "centos7.box"
+    m.vm.network "private_network", ip: "10.2.2.7"
   end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -59,8 +68,8 @@ config.vm.provider "virtualbox" do |vb|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-  vb.memory = "1024"
-  vb.cpus = "2"
+  vb.memory = "4096"
+  vb.cpus = "4"
 end
   #
   # View the documentation for the provider you are using for more
