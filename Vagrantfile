@@ -96,4 +96,5 @@ end
   #config.vm.define "db" do |db|
   #  db.vm.box = "mysql"
   #end
+  config.vm.provision :shell, :path => "ssh-setup.sh"
 end
